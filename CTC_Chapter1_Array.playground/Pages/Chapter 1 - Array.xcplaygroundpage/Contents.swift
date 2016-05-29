@@ -276,10 +276,10 @@ func oneEditAwayTwo(strA:String, strB:String) -> Bool{
     
     if lengthA == lengthB{                      //if both equal lengths then see if theres only onle letter to replace
         return oneEditReplace(strA, strB: strB)
-    } else if lengthA + 1 == lengthB {           //if A is smaller than B
+    } else if lengthA + 1 == lengthB {           //if A is the smaller string
         return oneEditInsert(strA, strB: strB)
     } else if lengthA - 1 == lengthB {
-        //return oneEditInsert(<#T##strA: String##String#>, strB: <#T##String#>)
+        return oneEditInsert(strB, strB: strA)  // if B is the smaller string
     }
     
     return false
@@ -312,7 +312,7 @@ func oneEditInsert(strA:String, strB:String) -> Bool{
     let arrayA = Array(strA.characters)
     let arrayB = Array(strB.characters)
 
-    while (indexB < arrayB.count && indexA < arrayA.count){
+    while (indexB < arrayB.count && indexA < arrayA.count){ //checks the index we're looking at to see if string A and string B are only one insertion away
         
         if arrayA[indexA] != arrayB[indexB] {
             if indexA != indexB {               //if indexA is not equal to indexB then return false
@@ -327,9 +327,69 @@ func oneEditInsert(strA:String, strB:String) -> Bool{
     return true
 }
 
-oneEditAwayTwo("pale", strB: "pal")
+//oneEditAwayTwo("pale", strB: "pal")
 
-//6. String Compression - implement a method tp perform basic string
+//6. String Compression - implement a method to perform basic string compression using repated characters. For example "aabcccccaaa" becomes "a2b1c5a3". if same length should return originl string. Assume string has only uppercase and lowercase letters. 
 
+func formDictFromString(str:String) -> [[Character:Int]] {
+    
+    var dictArray = [[Character:Int]]()
+    var sArray = Array(str.characters)
+    var counter = 1
+    var index = 0
+    
+    for i in 1...sArray.count{
+            if sArray[i-1] == sArray[i] && i < sArray.count-1{ //if the letters are equal AND you havent reached the end of the array
+                counter += 1
+            } else if sArray[i-1] == sArray[i] && i == sArray.count-1{
+                counter += 1
+                var dict = [Character:Int]()
+                dict[sArray[i]] = counter
+                dictArray.append(dict)
+                return dictArray
+            } else if sArray[i-1] != sArray[i] && i < sArray.count-1{
+                var dict = [Character:Int]()
+                dict[sArray[i-1]] = counter
+                dictArray.append(dict)
+                counter = 1
+            } else if sArray[i-1] != sArray[i] && i == sArray.count-1{
+                var dict1 = [Character:Int]()
+                var dict2 = [Character:Int]()
+                dict1[sArray[i-1]] = counter
+                dictArray.append(dict1)
+                dict2[sArray[i]] = 1
+                dictArray.append(dict2)
+                return dictArray
+            }
+            print(sArray[i])
+        }
+        print("Dict Array:\(dictArray)")
+        return dictArray
+    }
 
+//print("dict:\(formDictFromString("ffrrriiiccckkkussss"))")
 
+func createNewStringFromDict(arrayOfDicts:[[Character:Int]]) -> String {
+    
+    var newCharArray = [String]()
+    
+    for i in 0 ..< arrayOfDicts.count {
+        var dict = arrayOfDicts[i]
+        let dictKey = dict.first?.0
+        let dictVal = dict.first?.1
+        newCharArray.append(String(dictKey!))
+        newCharArray.append(String(dictVal!))
+    }
+    return newCharArray.joinWithSeparator("")
+}
+
+func stringCompression(input:String) -> String {
+    
+    let dict = formDictFromString(input)
+    
+    let newString = createNewStringFromDict(dict)
+    
+    return newString.characters.count < input.characters.count ? newString : input
+}
+
+stringCompression("ffrrriiiccckkkussss")

@@ -374,7 +374,7 @@ func createNewStringFromDict(arrayOfDicts:[[Character:Int]]) -> String {
     var newCharArray = [String]()
     
     for i in 0 ..< arrayOfDicts.count {
-        var dict = arrayOfDicts[i]
+        let dict = arrayOfDicts[i]
         let dictKey = dict.first?.0
         let dictVal = dict.first?.1
         newCharArray.append(String(dictKey!))
@@ -392,4 +392,43 @@ func stringCompression(input:String) -> String {
     return newString.characters.count < input.characters.count ? newString : input
 }
 
-stringCompression("ffrrriiiccckkkussss")
+//stringCompression("head")
+
+//7. Rotate Matrix - Given an image represented by an NxN matrix where each pixel in the image is 4 bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
+
+var matrix = [["a", "b", "c","m"],  //i = 0
+              ["d","e","f","m"],    //i = 1
+              ["g","h","i","m"],
+              ["j","k","l","m"]]    //i = 2
+
+func rotateMatrix(matrix:[[String]]) -> [[String]]{
+    
+    let n = matrix.count
+    //print(n)
+    
+    var newMatrix = [[String]]()
+    
+    //take the nth element of EACH separate array...form a new array with them inserting each new element at the front
+    
+    for i in 0 ..< n {//loop through array of arrays
+        var newArr = [String]()
+        for j in 0 ..< matrix[i].count{  //loop through single array
+            let element = matrix[j][i] //print matrix element 0,1,2 in matrix 0
+            print("Element i:\(i) in matrix j:\(j) element:\(element)")
+            newArr.insert(element, atIndex: newArr.startIndex)
+        }
+        newMatrix.insert(newArr, atIndex: newMatrix.endIndex)
+    }
+    //put that array of nth element in n of new matrix
+    print(newMatrix)
+    return newMatrix
+}
+
+rotateMatrix(matrix)
+
+
+
+
+
+
+

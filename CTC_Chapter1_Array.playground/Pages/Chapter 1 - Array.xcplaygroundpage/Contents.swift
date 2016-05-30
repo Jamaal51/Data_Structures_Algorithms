@@ -414,21 +414,91 @@ func rotateMatrix(matrix:[[String]]) -> [[String]]{
         var newArr = [String]()
         for j in 0 ..< matrix[i].count{  //loop through single array
             let element = matrix[j][i] //print matrix element 0,1,2 in matrix 0
-            print("Element i:\(i) in matrix j:\(j) element:\(element)")
+            //print("Element i:\(i) in matrix j:\(j) element:\(element)")
             newArr.insert(element, atIndex: newArr.startIndex)
         }
         newMatrix.insert(newArr, atIndex: newMatrix.endIndex)
     }
     //put that array of nth element in n of new matrix
-    print(newMatrix)
+    //print(newMatrix)
     return newMatrix
 }
 
-rotateMatrix(matrix)
+//rotateMatrix(matrix)
+
+//8. Zero Matrix - write an algorithm such that if an element in an MxN matrix is 0, its entire row and column are set to 0
+
+var mnMatrix = [["a","b","c"],    //M = 2   M x N
+                ["d","e","f"],
+                ["g","h","i"],
+                ["j","k","l"]]    //N = 3
+
+let m = mnMatrix.count              //row
+let n = mnMatrix.first?.count       //column
+
+//i choose "c" and I want to print the 1. the row "c" is in and 2. the column "c" is in. 
+//Every thing in column "c" will have the same x value and all the columns will have the same y value
 
 
+// "c" (0,2)
+
+var valueArray = [String]()
+
+for i in 0 ..< m {
+    for j in 0 ..< n! {
+        if i == 0 || j == 2 {
+        valueArray.append(mnMatrix[i][j])
+        mnMatrix[i][j] = "X"
+        }
+    }
+}
+//print(mnMatrix)
+//print
 
 
+func changeValueAtRowAndColumn(matrix:[[String]], toNewString:String, row:Int, column:Int) -> [[String]]{
+    
+    var matrix1 = matrix
+    
+    let x = toNewString
+    let m = matrix.count
+    let n = matrix.first?.count
+    
+    for i in 0 ..< m {
+        for j in 0 ..< n! {
+            if i == row || j == column {
+                matrix1[i][j] = x
+            }
+        }
+    }
+    print(matrix1)
+    return matrix1
+}
+
+//changeValueAtRowAndColumn(mnMatrix, toNewString: "0", row: 0, column: 2)
 
 
+//9. String Rotation - Assume you have a method isSubstring checks if word is substring of another. Given two strings s1 and s2 write code to check if s2 is a rotation of s1 using one call to isSubstring
+//ex: "waterbottle" is a rotation of "erbottlewat"
 
+func isSubstring(str1:String, str2:String) -> Bool {
+    
+    
+    
+    var strArray = Array(str1.characters)
+    let length = strArray.count
+    
+    for _ in length.stride(to: 1, by: -1) {
+        
+        let element = strArray.removeLast()
+        
+        strArray.insert(element, atIndex: 0)
+        
+        if String(strArray) == str2 {
+            return true
+        }
+    }
+    return false
+}
+
+//isSubstring("pirate", str2: "ratepi")

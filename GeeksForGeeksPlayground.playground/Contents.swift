@@ -24,5 +24,22 @@ func showTheMiddle(a:Int, b:Int, c:Int) -> Int {
     return intArray[1]
 }
 
-showTheMiddle(16, b: 100, c: 15)
+//showTheMiddle(16, b: 100, c: 15)
+
+func printTheMiddle(a:Int, b:Int, c:Int) -> Int{
+    
+    
+    
+    
+   
+    return 0
+}
+
+//printTheMiddle(5, b: 7, c: 6)
+
+
+
+
+
+
 

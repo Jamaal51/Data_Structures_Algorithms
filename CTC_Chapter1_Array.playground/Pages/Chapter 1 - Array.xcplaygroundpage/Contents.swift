@@ -483,8 +483,6 @@ func changeValueAtRowAndColumn(matrix:[[String]], toNewString:String, row:Int, c
 
 func isSubstring(str1:String, str2:String) -> Bool {
     
-    
-    
     var strArray = Array(str1.characters)
     let length = strArray.count
     
@@ -502,3 +500,99 @@ func isSubstring(str1:String, str2:String) -> Bool {
 }
 
 //isSubstring("pirate", str2: "ratepi")
+
+//Sudoku Board Checker problem
+
+let sudokuBoard: [[Int]] =  [[1,2,3,4,5,6,7,8,9], // [(0,0) ... (0,3) ... (0,6)]
+    [4,5,6,7,8,9,1,2,3],
+    [7,8,9,1,2,3,4,5,6],
+    [2,3,4,5,6,7,8,9,1], // [(3,0) ... (3,3) ... (3,6)]
+    [5,6,7,8,9,1,2,3,4],
+    [8,9,1,2,3,4,5,6,7],
+    [9,1,2,3,4,5,6,7,8], // [(6,0) ... (6,3) ... (6,6)]
+    [3,4,5,6,7,8,9,1,2],
+    [6,7,8,9,1,2,3,4,5]]
+
+// Sudoku Board Checker - given a sudoku board, check if it's valid
+//1. number must not be in same column
+//2. number must not be in same row
+//3. number must not be in same box
+
+func checkSudokuBoard(sudokuBoard:[[Int]]) -> Bool{
+    
+    return checkColumns(sudokuBoard) && checkRows(sudokuBoard) && checkBoxes(sudokuBoard)
+}
+
+func checkRows(sudokuBoard:[[Int]]) -> Bool {
+    
+    let column = sudokuBoard.first!.count
+    let row = sudokuBoard.count
+    
+    for i in 0 ..< row {
+        var valid: Set<Int> = [1,2,3,4,5,6,7,8,9]
+        for j in 0 ..< column {
+            let value = sudokuBoard[i][j]
+            //print(value)
+            valid.remove(value)
+        }
+        if !valid.isEmpty { return false }
+    }
+    
+    return true
+}
+
+func checkColumns(sudokuBoard:[[Int]]) -> Bool {
+    
+    let column = sudokuBoard.first!.count
+    let row = sudokuBoard.count
+    
+    for i in 0 ..< row {
+        var valid: Set<Int> = [1,2,3,4,5,6,7,8,9]
+        for j in 0 ..< column {
+            let value = sudokuBoard[j][i]
+            //print("\(j),\(i),:\(value)")
+            valid.remove(value)
+        }
+        //print("\n")
+        if !valid.isEmpty { return false }
+    }
+    
+    return true
+}
+
+func checkBoxes(sudokuBoard:[[Int]]) -> Bool {
+    
+    let column = sudokuBoard.first!.count
+    let row = sudokuBoard.count
+    let valid: Set<Int> = [1,2,3,4,5,6,7,8,9]
+    
+    for i in 0 ..< row {
+        for j in 0 ..< column {
+            if i % 3 == 0 && j % 3 == 0 {
+                let box = printMatrixBox(sudokuBoard, startRow: i, startCol: j)
+                if valid == Set(box){
+                    return true
+                }
+            }
+        }
+    }
+    return false
+}
+
+func printMatrixBox(sudokuBoard:[[Int]], startRow:Int, startCol:Int) -> [Int] {
+    
+    var numbers = [Int]()
+    
+    for i in 0 ..< 3 {
+        for j in 0 ..< 3{
+            numbers.append(sudokuBoard[startRow+i][startCol+j])
+        }
+    }
+    print("Numbers:\(numbers)")
+    return numbers
+}
+
+
+checkSudokuBoard(sudokuBoard)
+
+

@@ -3,8 +3,6 @@
 import UIKit
 
 /*
- Count the number of occurrences of an element in a sorted array
- 
  Max Value - Continuous Subsequence 
  Given array, find continuous subsequence for which sum is max
  ex. [-2, 11, -4, 13, -5, -2] -> 11-4+13 = 20 (hint: Kadane's)
@@ -12,10 +10,6 @@ import UIKit
  Given a string array ex: [1,2,3] find permutation in best time
  
  Compute the value of an expression in Reverse Polish Notation
- 
- Write a func to determine if a string is a number without using built in functions
- 
-
  */
 
 
@@ -134,24 +128,22 @@ func findStartAndEndIndexes(array:[Int], number:Int) -> (Int, Int){
     //var currentLastIndex = Int?()
     var lastIndex = Int?()
     
-    for i in array.enumerate() {
-        if firstIndex == nil {
-            if number == array[i.element] {
-                firstIndex = array[i.index]
-                print("First Index: \(firstIndex!) Element: \(array[i.element])")
-            }
+    for i in 0 ..< array.count {
+        if firstIndex == nil && number == array[i] {
+            //print("number: \(number), i:\(i)")
+            firstIndex = i
+            print("First Index: \(firstIndex!) Element: \(array[i])")
         }
     }
     
     for j in array.enumerate().reverse(){
-        if lastIndex == nil {
-            if number == array[j.element]{
-                let firstIndexReversed = array[j.index]
-                lastIndex = array.count - 1 - firstIndexReversed
-                 print("Last Index: \(lastIndex!) Element: \(array[j.element])")
-                }
-            }
+        if lastIndex == nil && number == array[j.element]{
+            let indexReversed = array[j.index]
+            lastIndex = array.count - 1 - indexReversed
+            print("Last Index: \(lastIndex!) Element: \(array[j.element])")
         }
+    }
+    
     
     return (firstIndex!,lastIndex!)
 }
@@ -159,9 +151,59 @@ func findStartAndEndIndexes(array:[Int], number:Int) -> (Int, Int){
 
 //findStartAndEndIndexes([0,0,2,3,3,3,3,4,7,7,9], number: 3)
 
-//findStartAndEndIndexes([2,1,3,4,5,2,5], number: 2)
+//findStartAndEndIndexes([0,2,1,3,4,5,2,5], number: 2)
 
+// 5. Count the number of occurrences of an element in a sorted array
 
+func countOccurrences(array:[String], element:String) -> Int {
+    
+    var counter = 0
+    
+    for i in 0 ..< array.count {
+        if element == array[i] {
+            counter += 1
+        }
+    }
+    return counter
+}
 
+//countOccurrences(["dad","bob","john","dad","phil","dad","ronny"], element: "bob")
+
+// 6.  Write a func to determine if a string is a number without using built in functions
+
+func isNumber(string:String) -> Bool {
+    
+    //correct numbers: 5, 2500, -5, 0.25,
+    let charArray = Array(string.characters) //put string in array of characters
+
+    var decimal = false //is decimal? set a bool to check how many decimals
+    
+    for i in 0 ..< charArray.count { //loop through
+        
+        if charArray[i] == "-" || charArray[i] == "+" { //pos and neg signs only in 0 index
+            if i != 0 { return false }                  // else its false
+        } else if charArray[i] == "."{                  //if there's a decimal
+            if decimal {                                //and decimal is true that means there
+                return false                            //was already another decimal
+            } else {
+            decimal = true                              //set to true here
+            }
+            if i == charArray.count-1{                  //decimals cannot be in the last index
+                return false
+            }
+        } else if charArray[i] < "0" || charArray[i] > "9" { //cannot be less than 0
+            return false                                     //or greater than 9 in string code
+        }
+    }
+    return true
+}
+
+//var word = "This saturday night we will party"
+//
+//let new = word.characters.split(" ").map(String.init)
+//
+//print(new)
+
+isNumber("900000")
 
 

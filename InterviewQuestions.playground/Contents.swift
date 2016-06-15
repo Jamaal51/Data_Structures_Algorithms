@@ -2,13 +2,7 @@
 
 import UIKit
 
-/*
- Max Value - Continuous Subsequence 
- Given array, find continuous subsequence for which sum is max
- ex. [-2, 11, -4, 13, -5, -2] -> 11-4+13 = 20 (hint: Kadane's)
- 
- Given a string array ex: [1,2,3] find permutation in best time
- 
+/* Questions:
  Compute the value of an expression in Reverse Polish Notation
  */
 
@@ -111,7 +105,7 @@ func hasSquareRoot(int:Int) -> Bool {
     return false
 }
 
-hasSquareRoot(72)
+//hasSquareRoot(72)
 
 
 //returnSquareRoot(99)
@@ -204,6 +198,178 @@ func isNumber(string:String) -> Bool {
 //
 //print(new)
 
-isNumber("900000")
+//isNumber("900000")
+
+// 6. Searching through an array using binary search
+
+func searchForElementInArray(array:[Int], element: Int) -> Bool {
+    
+    let mid = array.count/2
+    let min = array[0]
+    let max = array[array.count-1]
+    
+    let leftSplit: ArraySlice<Int> = array[0 ..< mid]
+    let rightSplit: ArraySlice<Int> = array[mid ..< array.count]
+   
+    if element >= min && element <= max{
+        if element == array[mid] || element == max || element == min{
+            print(true)
+            return true
+        } else if element < array[mid]{
+            searchForElementInArray(Array(leftSplit), element: element)
+        } else if element > array[mid]{
+            searchForElementInArray(Array(rightSplit), element: element)
+        }
+    }
+    return false
+}
+
+//let arrayInts = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+
+//searchForElementInArray(arrayInts, element:16)
+
+// 7. Max Value - Continuous Subsequence
+//Given array, find continuous subsequence for which sum is max
+//    ex. [-2, 11, -4, 13, -5, -2] -> 11-4+13 = 20 (hint: Kadane's)
+
+func maxSubsequentSum(array:[Int]) -> [Int] {
+    
+    let count = array.count             //set array count
+    var maxSum = 0                      //have a maxSum var that holds the final sum
+    var runningSum = array[0]           //set the runningSum equal to first element in array
+    var j = 0                           //set j
+    var start = 0
+    var finish = 0
+    
+    for i in 1 ..< count {              //enumerate from 1 to count-1
+        if runningSum > 0 {             //if the running sum > 0
+            print(runningSum)
+            runningSum += array[i]      //add the array[i] to it
+        } else {                        // if running sum is < 0
+            runningSum = array[i]       //make array[i] the new running sum
+            j = i                       //set j equal to i to hold that index
+        }
+        if runningSum > maxSum {        //if the runningSum is greater than maxSum
+            maxSum = runningSum         //set runningSum as maxSum
+            start = j                   //make start index = j
+            finish = i                  //make finish = i
+        }
+        
+    }
+    print(maxSum)
+    print("start:\(start) finish:\(finish)")
+    let newArray: ArraySlice<Int> = array[start...finish]
+    
+    return Array(newArray)
+}
+
+//maxSubsequentSum([-2, 11, -4, 13, -5, -2])
+
+
+func findMaxInSequence(array:[Int]) -> [Int] {
+    
+    let count = array.count
+    var maxSum = 0
+    var runningSum = array[0]
+    var j = 0     //start
+    var start = 0
+    var finish = 0
+    
+    //1. figure out running sum
+    
+    for i in 1 ..< count {
+        if runningSum > 0 {
+            runningSum += array[i]   //if runningSum > 0 add to next index value
+        } else {
+            runningSum = array[i]    // else we make the next index value our running sum
+            j = i                    // keep track of index i by keeping it at j
+        }
+        if runningSum > maxSum {
+            maxSum = runningSum
+            start = j
+            finish = i
+        }
+    }
+    let newArray: ArraySlice<Int> = array[start...finish]
+    
+    return Array(newArray)
+}
+
+//findMaxInSequence([-2, 11, -4, 13, -5, -2])
+
+// 8. Given a string array ex: [1,2,3] find permutation in best time
+
+
+//func findPermutation(array:[Int], startIndex:Int, endIndex:Int) -> [Int] {
+//    var i: Int
+//    
+//    if (startIndex == endIndex){
+//        print(array)
+//    } else {
+//        for i in 1 ... endIndex {
+//            swap(array+startIndex, second: <#T##Int#>)
+//        }
+//        
+//        
+//    }
+//    
+//    return [0]
+//}
+
+func swap(first:Int, second:Int) -> [Int] {
+    var a = first
+    var b = second
+    var temp: Int
+    
+    temp = a
+    a = b
+    b = temp
+    
+    return [a, b]
+}
+
+swap(5,second: 4)
+
+var newString: String = ""
+
+func printPermutationsOfString(word:String){
+    print("called function")
+    if word.characters.count == 1 {
+        print("A. word count = 1")
+        newString.appendContentsOf(word)
+        print("B. newString = \(newString)")
+        newString = newString.stringByReplacingOccurrencesOfString(word, withString: "")
+        print("C. newString = \(newString)")
+    } else {
+        for i in word.characters{
+            print("D. word = \(word)")
+            print("i = \(i)")
+            newString.append(i)
+            print("E. newString = \(newString)")
+            printPermutationsOfString(word.stringByReplacingOccurrencesOfString(String(i), withString: ""))
+            newString = newString.stringByReplacingOccurrencesOfString(String(i), withString: "")
+            print("F. newString = \(newString)")
+        }
+    }
+}
+printPermutationsOfString("run")
+
+/*
+ word = run
+ i = r
+ newString = r 
+ printPermutationsOfString(word.stringByReplacingOccurencesOfString(r, with "")
+ word = un
+ i = u 
+ newString = ru
+ printPermutationsOfString(word.stringByReplacingOccurencesOfString(u, with "")
+ word = n
+ print "this called"
+ newString = run
+ print "run"
+ newString = newString.stringByReplacingOccurrencesOfString(n, withString: "")
+ newString = newString.stringByReplacingOccurrencesOfString(r, withString: "")
+ newString = un
+ */
 
 

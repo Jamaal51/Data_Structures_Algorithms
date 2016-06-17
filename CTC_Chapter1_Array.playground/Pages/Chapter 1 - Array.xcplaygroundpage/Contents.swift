@@ -49,7 +49,6 @@ func stringHasUniqueChars(str:String) -> Bool {
 //2 - check if one string is permutation of another
 // sort one string and see if it ever ends up as the other string
 
-//var usedStrings = [Any]()
 
 func isPermutation(str1:String, str2:String) -> Bool {
     

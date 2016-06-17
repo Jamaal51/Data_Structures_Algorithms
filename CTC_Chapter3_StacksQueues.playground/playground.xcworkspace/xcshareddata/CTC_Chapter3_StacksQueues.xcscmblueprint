@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "ED09DF9A2F00B4071B290E1EE650B6C4086D0E76",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "30A84B99270FD41A9D54C2829096F6CC277C27B1" : 0,
+    "ED09DF9A2F00B4071B290E1EE650B6C4086D0E76" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BCD0427D-7D9D-4044-84E2-1A4062EDE0F7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "30A84B99270FD41A9D54C2829096F6CC277C27B1" : "",
+    "ED09DF9A2F00B4071B290E1EE650B6C4086D0E76" : "Data_Structures_Algorithms\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CTC_Chapter3_StacksQueues",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CTC_Chapter3_StacksQueues.playground",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Jamaal51\/javaWorkspace",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "30A84B99270FD41A9D54C2829096F6CC277C27B1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Jamaal51\/Data_Structures_Algorithms.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "ED09DF9A2F00B4071B290E1EE650B6C4086D0E76"
+    }
+  ]
+}

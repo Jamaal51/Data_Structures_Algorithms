@@ -58,6 +58,19 @@ func reverseString(str:String) -> String {
 }
 
 //reverseString("balboa")
+//more efficient way to reverse string
+
+func reverseStringTwo(str:String) -> String {
+    var newString = ""
+    
+    for i in str.characters.reverse(){
+        newString.append(i)
+    }
+    return newString
+}
+
+//reverseStringTwo("hello my name is bob")
+
 
 func reverseStringRecursively(str:String) -> String {
     
@@ -299,23 +312,6 @@ func findMaxInSequence(array:[Int]) -> [Int] {
 
 // 8. Given a string array ex: [1,2,3] find permutation in best time
 
-
-//func findPermutation(array:[Int], startIndex:Int, endIndex:Int) -> [Int] {
-//    var i: Int
-//    
-//    if (startIndex == endIndex){
-//        print(array)
-//    } else {
-//        for i in 1 ... endIndex {
-//            swap(array+startIndex, second: <#T##Int#>)
-//        }
-//        
-//        
-//    }
-//    
-//    return [0]
-//}
-
 func swap(first:Int, second:Int) -> [Int] {
     var a = first
     var b = second
@@ -335,41 +331,148 @@ var newString: String = ""
 func printPermutationsOfString(word:String){
     print("called function")
     if word.characters.count == 1 {
-        print("A. word count = 1")
+         print("A. word count = 1, word = \(word)")
         newString.appendContentsOf(word)
-        print("B. newString = \(newString)")
+         print("B. newString1 = \(newString)")
         newString = newString.stringByReplacingOccurrencesOfString(word, withString: "")
-        print("C. newString = \(newString)")
+         print("C. newString2 = \(newString)")
     } else {
         for i in word.characters{
-            print("D. word = \(word)")
-            print("i = \(i)")
+             print("D. word = \(word), i = \(i)")
             newString.append(i)
-            print("E. newString = \(newString)")
+             print("E. newString3 = \(newString)")
             printPermutationsOfString(word.stringByReplacingOccurrencesOfString(String(i), withString: ""))
             newString = newString.stringByReplacingOccurrencesOfString(String(i), withString: "")
-            print("F. newString = \(newString)")
+             print("F. newString4 = \(newString)")
         }
     }
 }
-printPermutationsOfString("run")
+//printPermutationsOfString("rob")
 
-/*
- word = run
- i = r
- newString = r 
- printPermutationsOfString(word.stringByReplacingOccurencesOfString(r, with "")
- word = un
- i = u 
- newString = ru
- printPermutationsOfString(word.stringByReplacingOccurencesOfString(u, with "")
- word = n
- print "this called"
- newString = run
- print "run"
- newString = newString.stringByReplacingOccurrencesOfString(n, withString: "")
- newString = newString.stringByReplacingOccurrencesOfString(r, withString: "")
- newString = un
- */
+// 9. Two-Sum Problem. Given array, write function that checks if there are two entries that add up to k. Basically a[i] + a[j] == k ?
+
+func twoSumProblem(array:[Int], k:Int) -> (Int,Int)? {
+    
+    
+    var dict = [Int:Int]()
+    
+    //1. return if i is in the dictionary
+    for i in 0 ..< array.count {
+        if let newK = dict[array[i]]{   //if you have element in the dictionary, then you let it be newK (return value of
+            return (newK, i)        //return index values (1,3)
+        } else {
+            dict[k - array[i]] = i  //if not in the dictionary we add it as a key
+        }
+    }
+    return nil
+}
+
+//Another way to solve this
+//func twoSumProblem(a: [Int], k: Int) -> ((Int, Int))? {
+//    var i = 0
+//    var j = a.count - 1
+//    
+//    while i < j {
+//        let sum = a[i] + a[j]
+//        if sum == k {
+//            return (i, j)
+//        } else if sum < k {
+//            ++i
+//        } else {
+//            --j
+//        }
+//    }
+//    return nil
+//}
+
+let thisArray = [ 7, 2, 23, 8, -1, 0, 11, 6]
+
+twoSumProblem(thisArray, k: 10)
 
 
+
+//////
+
+func merge(leftPile leftPile:[Int], rightPile:[Int]) -> [Int] {
+   //1  two indexes to keep track of your progress for the two arrays while merging.
+    var leftIndex = 0
+    var rightIndex = 0
+  
+    //2 initiate merged array to be returned
+    var orderedPile = [Int]()
+    
+    //3 compare the elements from the left and right sides, and append them to the orderedPile while making sure that the result stays in order
+    while leftIndex < leftPile.count && rightIndex < rightPile.count {
+        if leftPile[leftIndex] < rightPile[rightIndex] {
+            orderedPile.append(leftPile[leftIndex])
+            leftIndex += 1
+        } else if leftPile[leftIndex] > rightPile[rightIndex] {
+            orderedPile.append(rightPile[rightIndex])
+            rightIndex += 1
+        } else {
+            orderedPile.append(leftPile[leftIndex])
+            leftIndex += 1
+            orderedPile.append(rightPile[rightIndex])
+            rightIndex += 1
+        }
+    }
+    
+    //4 
+    while leftIndex < leftPile.count {
+        orderedPile.append(leftPile[leftIndex])
+        leftIndex += 1
+    }
+    
+    while rightIndex < rightPile.count {
+        orderedPile.append(rightPile[rightIndex])
+        rightIndex += 1
+    }
+    
+    print("Ordered Pile:\(orderedPile)")
+    return orderedPile
+}
+
+func mergeSort(array:[Int]) -> [Int]{
+    
+    if array.count <= 1 { return array }
+    
+    let middle = array.count/2
+    
+    let firstHalf = mergeSort(Array(array[0..<middle]))
+    
+    let secondHalf = mergeSort(Array(array[middle..<array.count]))
+    
+    print("first:\(firstHalf)")
+    
+    print("second:\(secondHalf)")
+    
+    return merge(leftPile: firstHalf, rightPile: secondHalf)
+}
+
+mergeSort([10,2,12,3,9,4,17,6])
+
+
+
+
+
+// HASH TABLES
+
+public struct HashTable<Key: Hashable, Value> {
+    
+    private typealias Element = (key: Key, value: Value)
+    private typealias Bucket = [Element]
+    
+    private var buckets: [Bucket]
+    private(set) var count = 0
+    
+    public init(capacity:Int){
+        assert(capacity>0)
+        buckets = .init(count: capacity, repeatedValue: [])
+    }
+    
+    public var isEmpty: Bool {
+        return count == 0
+    }
+    
+}
+var hashTable = HashTable<String, String>(capacity: 5)

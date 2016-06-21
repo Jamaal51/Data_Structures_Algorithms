@@ -7,15 +7,18 @@ func pairSumSequence(n: Int) -> (Int) {
     
     for i in 0..<n {
         sum += pairSum(i, b: i+1)
+        print(sum)
     }
+    print(sum)
     return sum
 }
 
 func pairSum(a: Int, b: Int)->Int{
+    print(a,b)
     return a + b
 }
 
-//pairSumSequence(4)
+pairSumSequence(10)
 
 // Run Times
 

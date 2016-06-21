@@ -155,7 +155,6 @@ func findStartAndEndIndexes(array:[Int], number:Int) -> (Int, Int){
     return (firstIndex!,lastIndex!)
 }
 
-
 //findStartAndEndIndexes([0,0,2,3,3,3,3,4,7,7,9], number: 3)
 
 //findStartAndEndIndexes([0,2,1,3,4,5,2,5], number: 2)
@@ -182,7 +181,6 @@ func isNumber(string:String) -> Bool {
     
     //correct numbers: 5, 2500, -5, 0.25,
     let charArray = Array(string.characters) //put string in array of characters
-
     var decimal = false //is decimal? set a bool to check how many decimals
     
     for i in 0 ..< charArray.count { //loop through
@@ -211,7 +209,7 @@ func isNumber(string:String) -> Bool {
 //
 //print(new)
 
-//isNumber("900000")
+isNumber("hello")
 
 // 6. Searching through an array using binary search
 
@@ -234,12 +232,13 @@ func searchForElementInArray(array:[Int], element: Int) -> Bool {
             searchForElementInArray(Array(rightSplit), element: element)
         }
     }
+    
     return false
 }
 
-//let arrayInts = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+let arrayInts = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
-//searchForElementInArray(arrayInts, element:16)
+searchForElementInArray(arrayInts, element:16)
 
 // 7. Max Value - Continuous Subsequence
 //Given array, find continuous subsequence for which sum is max
@@ -278,7 +277,6 @@ func maxSubsequentSum(array:[Int]) -> [Int] {
 
 //maxSubsequentSum([-2, 11, -4, 13, -5, -2])
 
-
 func findMaxInSequence(array:[Int]) -> [Int] {
     
     let count = array.count
@@ -312,19 +310,19 @@ func findMaxInSequence(array:[Int]) -> [Int] {
 
 // 8. Given a string array ex: [1,2,3] find permutation in best time
 
-func swap(first:Int, second:Int) -> [Int] {
-    var a = first
-    var b = second
-    var temp: Int
-    
-    temp = a
-    a = b
-    b = temp
-    
-    return [a, b]
-}
-
-swap(5,second: 4)
+//func swap(first:Int, second:Int) -> [Int] {
+//    var a = first
+//    var b = second
+//    var temp: Int
+//    
+//    temp = a
+//    a = b
+//    b = temp
+//    
+//    return [a, b]
+//}
+//
+//swap(5,second: 4)
 
 var newString: String = ""
 
@@ -347,7 +345,8 @@ func printPermutationsOfString(word:String){
         }
     }
 }
-//printPermutationsOfString("rob")
+
+printPermutationsOfString("rob")
 
 // 9. Two-Sum Problem. Given array, write function that checks if there are two entries that add up to k. Basically a[i] + a[j] == k ?
 
@@ -385,74 +384,71 @@ func twoSumProblem(array:[Int], k:Int) -> (Int,Int)? {
 //    return nil
 //}
 
-let thisArray = [ 7, 2, 23, 8, -1, 0, 11, 6]
+//let thisArray = [ 7, 2, 23, 8, -1, 0, 11, 6]
 
-twoSumProblem(thisArray, k: 10)
+//twoSumProblem(thisArray, k: 10)
 
 
 
 //////
 
-func merge(leftPile leftPile:[Int], rightPile:[Int]) -> [Int] {
-   //1  two indexes to keep track of your progress for the two arrays while merging.
-    var leftIndex = 0
-    var rightIndex = 0
-  
-    //2 initiate merged array to be returned
-    var orderedPile = [Int]()
-    
-    //3 compare the elements from the left and right sides, and append them to the orderedPile while making sure that the result stays in order
-    while leftIndex < leftPile.count && rightIndex < rightPile.count {
-        if leftPile[leftIndex] < rightPile[rightIndex] {
-            orderedPile.append(leftPile[leftIndex])
-            leftIndex += 1
-        } else if leftPile[leftIndex] > rightPile[rightIndex] {
-            orderedPile.append(rightPile[rightIndex])
-            rightIndex += 1
-        } else {
-            orderedPile.append(leftPile[leftIndex])
-            leftIndex += 1
-            orderedPile.append(rightPile[rightIndex])
-            rightIndex += 1
-        }
-    }
-    
-    //4 
-    while leftIndex < leftPile.count {
-        orderedPile.append(leftPile[leftIndex])
-        leftIndex += 1
-    }
-    
-    while rightIndex < rightPile.count {
-        orderedPile.append(rightPile[rightIndex])
-        rightIndex += 1
-    }
-    
-    print("Ordered Pile:\(orderedPile)")
-    return orderedPile
-}
+//func merge(leftPile leftPile:[Int], rightPile:[Int]) -> [Int] {
+//   //1  two indexes to keep track of your progress for the two arrays while merging.
+//    var leftIndex = 0
+//    var rightIndex = 0
+//  
+//    //2 initiate merged array to be returned
+//    var orderedPile = [Int]()
+//    
+//    //3 compare the elements from the left and right sides, and append them to the orderedPile while making sure that the result stays in order
+//    while leftIndex < leftPile.count && rightIndex < rightPile.count {
+//        if leftPile[leftIndex] < rightPile[rightIndex] {
+//            orderedPile.append(leftPile[leftIndex])
+//            leftIndex += 1
+//        } else if leftPile[leftIndex] > rightPile[rightIndex] {
+//            orderedPile.append(rightPile[rightIndex])
+//            rightIndex += 1
+//        } else {
+//            orderedPile.append(leftPile[leftIndex])
+//            leftIndex += 1
+//            orderedPile.append(rightPile[rightIndex])
+//            rightIndex += 1
+//        }
+//    }
+//    
+//    //4 
+//    while leftIndex < leftPile.count {
+//        orderedPile.append(leftPile[leftIndex])
+//        leftIndex += 1
+//    }
+//    
+//    while rightIndex < rightPile.count {
+//        orderedPile.append(rightPile[rightIndex])
+//        rightIndex += 1
+//    }
+//    
+//    print("Ordered Pile:\(orderedPile)")
+//    return orderedPile
+//}
+//
+//func mergeSort(array:[Int]) -> [Int]{
+//    
+//    if array.count <= 1 { return array }
+//    
+//    let middle = array.count/2
+//    
+//    let firstHalf = mergeSort(Array(array[0..<middle]))
+//    
+//    let secondHalf = mergeSort(Array(array[middle..<array.count]))
+//    
+//    print("first:\(firstHalf)")
+//    
+//    print("second:\(secondHalf)")
+//    
+//    return merge(leftPile: firstHalf, rightPile: secondHalf)
+//}
 
-func mergeSort(array:[Int]) -> [Int]{
-    
-    if array.count <= 1 { return array }
-    
-    let middle = array.count/2
-    
-    let firstHalf = mergeSort(Array(array[0..<middle]))
-    
-    let secondHalf = mergeSort(Array(array[middle..<array.count]))
-    
-    print("first:\(firstHalf)")
-    
-    print("second:\(secondHalf)")
-    
-    return merge(leftPile: firstHalf, rightPile: secondHalf)
-}
-
-mergeSort([10,2,12,3,9,4,17,6])
-
-
-
+//mergeSort([10,2,12,3,9,4,17,6])
 
 
 // HASH TABLES
@@ -476,3 +472,171 @@ public struct HashTable<Key: Hashable, Value> {
     
 }
 var hashTable = HashTable<String, String>(capacity: 5)
+
+// Practice Implement Merge Sort
+
+func mergeSort(array:[Int]) -> [Int] {
+    
+    if array.count <= 1 { return array }
+    
+    let middle = array.count / 2
+    
+    let firstHalf = mergeSort(Array(array[0 ..< middle]))
+    
+    let secondHalf = mergeSort(Array(array[middle ..< array.count]))
+    
+    return merge(leftPile: firstHalf, rightPile: secondHalf)
+}
+
+func merge(leftPile leftPile:[Int], rightPile:[Int]) -> [Int]{
+    //create tracking indexes
+    var leftIndex = 0
+    var rightIndex = 0
+    
+    //initiate array for ordered array
+    var orderedPile = [Int]()
+    
+    while leftIndex < leftPile.count && rightIndex < rightPile.count {
+        if leftPile[leftIndex] < rightPile[rightIndex]{
+            orderedPile.append(leftPile[leftIndex])
+            leftIndex += 1
+        } else if leftPile[leftIndex] > rightPile[rightIndex] {
+            orderedPile.append(rightPile[rightIndex])
+            rightIndex += 1
+        } else {
+            orderedPile.append(leftPile[leftIndex])
+            leftIndex += 1
+            orderedPile.append(rightPile[rightIndex])
+            rightIndex += 1
+        }
+    }
+    
+        while leftIndex < leftPile.count {
+            orderedPile.append(leftPile[leftIndex])
+            leftIndex += 1
+        }
+        
+        while rightIndex < rightPile.count {
+            orderedPile.append(rightPile[rightIndex])
+            rightIndex += 1
+        }
+    print(orderedPile)
+    return orderedPile
+    }
+
+
+//mergeSort([10,2,12,3,9,4,17,6])
+
+// 10. Tic-Tac-Toe Proof
+
+// how to win tic tac toe - if you are X or O and you score 1. same row, column or diagonal
+
+let ticTacToeBox: [[Character]] = [["X", "X", "O"],  //0.0 0.1 0.2
+                                   ["O", "X", "X"],  //1.0 1.1 1.2
+                                   ["X", "O", "O"]]  //2.0 2.1 2.2
+
+func isTicTacToeWin(gameBox:[[Character]]) -> (Bool, Character?)? {
+    var gameWon = false
+    var winner = Character?()
+    
+    //check rows
+    for i in 0 ..< gameBox.count {
+        var xCount = 0
+        var oCount = 0
+        for j in 0 ..< gameBox[i].count {
+            print("Rows i,j - \(i),\(j)")
+            
+            if gameBox[i][j] == "X" {
+                xCount += 1
+            } else {
+                oCount += 1
+            }
+            
+            if xCount == 3 {
+                print("X wins - Row")
+                gameWon = true
+                winner = "X"
+                return (gameWon, winner)
+            } else if oCount == 3 {
+                print("O wins - Row")
+                gameWon = true
+                winner = "O"
+                return (gameWon, winner)
+            }
+        }
+    }
+    
+    //checkColumns
+    for i in 0 ..< gameBox.count {
+        var xCount = 0
+        var oCount = 0
+        for j in 0 ..< gameBox[i].count {
+            
+            print("Col i,j - \(i),\(j)")
+            
+            if gameBox[j][i] == "X" {
+                xCount += 1
+            } else {
+                oCount += 1
+            }
+           
+            if xCount == 3 {
+                print("X wins - Col")
+                gameWon = true
+                winner = "X"
+                return (gameWon, winner)
+            } else if oCount == 3 {
+                print("O wins - Col")
+                gameWon = true
+                winner = "O"
+                return (gameWon, winner)
+            }
+        }
+    }
+    
+    //checkDiagonals
+    
+    var xCount1 = 0
+    var oCount1 = 0
+    var xCount2 = 0
+    var oCount2 = 0
+
+    for i in 0 ..< gameBox.count {
+        for j in 0 ..< gameBox[i].count {
+            if i == j {
+                print("Diag i,j - \(i),\(j)")
+                //decline diagonal
+                if gameBox[i][j] == "X" {
+                    print(gameBox[i][j])
+                    xCount1 += 1
+                } else {
+                    oCount1 += 1
+                }
+                
+                //incline diagonal
+                if gameBox[i][2-j] == "O"{
+                    print(gameBox[i][j])
+                    oCount2 += 1
+                } else {
+                    xCount2 += 1
+                }
+                
+                if xCount1 == 3 || xCount2 == 3 {
+                    print("X wins - Diag")
+                    gameWon = true
+                    winner = "X"
+                    return (gameWon, winner)
+                } else if oCount1 == 3 || oCount2 == 3 {
+                    print("O wins - Diag")
+                    gameWon = true
+                    winner = "O"
+                    return (gameWon, winner)
+                }
+            }
+        }
+    }
+    return (gameWon,"T")
+}
+
+//isTicTacToeWin(ticTacToeBox)
+

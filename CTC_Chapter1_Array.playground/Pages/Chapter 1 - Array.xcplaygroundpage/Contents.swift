@@ -9,11 +9,6 @@ import UIKit
  3. At this index, there is a linked list of keys and values.
  */
 
-
-
-
-
-
 //1 - Implement an algorithm to determine if a string has all unique charaters. What if you cannot use additional data structures?
 // for example - "stair" are all the characters unique, yes. but "stairs" they are not
 
@@ -32,7 +27,7 @@ func stringHasUniqueChars(str:String) -> Bool {
 
 //ask if ASCII characters or UNICODE characters
 
-//stringHasUniqueChars("ball")
+//stringHasUniqueChars("amazonprime")
 
 //func stringHasUniqueCharsTwo(str:String) -> Bool {
 //    var newString = String()
@@ -120,9 +115,6 @@ func convertStringToURLString(input:String) -> String {
 //    for i in n.stride(to: 0, by: -1){
 //        if stringArray[i] == " "{
 //          stringArray[newLength-1] =
-//            
-//        
-//        
 //        }
 //    }
 //
@@ -148,12 +140,8 @@ func checkMaxNumberOfOdds(dict:[Character:Int]) -> Bool {
     for i in 0 ..< allValues.count{
         if allValues[i] % 2 == 1 {
             oddCounter += 1
-            print(i)
         }
     }
-    print(allValues)
-    print(oddCounter)
-    
     return oddCounter <= 1
 }
 
@@ -195,7 +183,7 @@ let stringArray = Array(string1.characters)
 
 //createDictionaryOfKeys(stringArray)
 
-//isPermOfPalindrome("baseball")
+isPermOfPalindrome("baseball")
 
 //5. One Away: There are 3 types of edits - insert, remove, replace a character. Given 2 strings write a function to check if they are one edit (or 0) away
 
@@ -214,11 +202,9 @@ func countOutOfOrder(stringA:String, stringB:String) -> Int {
         while (index1 < charArrayA.count && index2 < charArrayB.count){
             if charArrayA[i] != charArrayB[i]{
                 counter += 1
-            
             }
             index1+=1
             index2+=1
-            
         }
     }
     
@@ -326,7 +312,7 @@ func oneEditInsert(strA:String, strB:String) -> Bool{
     return true
 }
 
-//oneEditAwayTwo("pale", strB: "pal")
+oneEditAwayTwo("pale", strB: "pal")
 
 //6. String Compression - implement a method to perform basic string compression using repated characters. For example "aabcccccaaa" becomes "a2b1c5a3". if same length should return originl string. Assume string has only uppercase and lowercase letters. 
 
@@ -413,6 +399,8 @@ func rotateMatrix(matrix:[[String]]) -> [[String]]{
         var newArr = [String]()
         for j in 0 ..< matrix[i].count{  //loop through single array
             let element = matrix[j][i] //print matrix element 0,1,2 in matrix 0
+            print(j,i)
+            print(element)
             //print("Element i:\(i) in matrix j:\(j) element:\(element)")
             newArr.insert(element, atIndex: newArr.startIndex)
         }
@@ -474,7 +462,7 @@ func changeValueAtRowAndColumn(matrix:[[String]], toNewString:String, row:Int, c
     return matrix1
 }
 
-//changeValueAtRowAndColumn(mnMatrix, toNewString: "0", row: 0, column: 2)
+changeValueAtRowAndColumn(mnMatrix, toNewString: "0", row: 0, column: 2)
 
 
 //9. String Rotation - Assume you have a method isSubstring checks if word is substring of another. Given two strings s1 and s2 write code to check if s2 is a rotation of s1 using one call to isSubstring
@@ -577,9 +565,7 @@ func checkBoxes(sudokuBoard:[[Int]]) -> Bool {
     }
     return false
 }
-
 func printMatrixBox(sudokuBoard:[[Int]], startRow:Int, startCol:Int) -> [Int] {
-    
     var numbers = [Int]()
     
     for i in 0 ..< 3 {
@@ -592,6 +578,6 @@ func printMatrixBox(sudokuBoard:[[Int]], startRow:Int, startCol:Int) -> [Int] {
 }
 
 
-checkSudokuBoard(sudokuBoard)
+//checkSudokuBoard(sudokuBoard)
 
 
